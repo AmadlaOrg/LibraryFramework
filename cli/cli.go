@@ -17,7 +17,7 @@ type Setup func(*cobra.Command)
 // Params:
 // - 📇 name - Is the of the application (normally all lowercase)
 // - 📜 title - Is the name but with uppercase letters where need be
-// - ‼️ version - The version of the application
+// - ♻️ version - The version of the application
 // - 🚀 setup - Is a callback/decoration-pattern so that other commands can be attached
 //
 // Example:
