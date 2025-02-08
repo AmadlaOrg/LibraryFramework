@@ -6,10 +6,16 @@ import (
 	"os"
 )
 
+// For mocking
 var (
 	osExit = os.Exit
 )
 
+// Setup function type definition is for attaching commands to the root of the cli
+// This is for the implementation of a decoration pattern
+//
+// Params:
+// - 🐍 *cobra.Command - Is for passing the root Command so that other commands can be attached to the main one
 type Setup func(*cobra.Command)
 
 // New attaches to the cli the basic details and command that all the cli application require to work
@@ -34,11 +40,14 @@ type Setup func(*cobra.Command)
 //	}
 func New(name, title, version string, setup Setup) {
 	var (
+		// rootCmd the main command setup
 		rootCmd = &cobra.Command{
 			Use:     name,
 			Short:   fmt.Sprintf("%s CLI application", title),
 			Version: version,
 		}
+
+		// versionCmd is for the command setup for displaying the application version
 		versionCmd = &cobra.Command{
 			Use:   "version",
 			Short: "Print the version number of " + name,
