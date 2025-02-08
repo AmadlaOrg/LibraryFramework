@@ -2,8 +2,9 @@ package cli
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/spf13/cobra"
 )
 
 type Setup func(*cobra.Command)
@@ -13,6 +14,7 @@ type Setup func(*cobra.Command)
 // Params:
 // - 📇 name - Is the of the application (normally all lowercase)
 // - 📜 title - Is the name but with uppercase letters where need be
+// - ‼️ version - The version of the application
 // - 🚀 setup - Is a callback/decoration-pattern so that other commands can be attached
 //
 // Example:
@@ -28,28 +30,23 @@ type Setup func(*cobra.Command)
 //			})
 //	}
 func New(name, title, version string, setup Setup) {
-
-	appName := fmt.Sprintf("auditor-%s", name)
-	appTitleName := fmt.Sprintf("Auditor %s", title)
-
 	var (
 		rootCmd = &cobra.Command{
-			Use:     appName,
-			Short:   appTitleName + " CLI application",
+			Use:     name,
+			Short:   fmt.Sprintf("%s CLI application", title),
 			Version: version,
 		}
 		versionCmd = &cobra.Command{
 			Use:   "version",
-			Short: "Print the version number of " + appName,
+			Short: "Print the version number of " + name,
 			Run: func(cmd *cobra.Command, args []string) {
-				cmd.Println(appName + " version " + version)
+				cmd.Println(name + " version " + version)
 			},
 		}
 	)
 
 	rootCmd.AddCommand(versionCmd)
 
-	// TODO: Test with and without `=`
 	setup(rootCmd)
 
 	if err := rootCmd.Execute(); err != nil {
