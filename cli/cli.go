@@ -2,9 +2,12 @@ package cli
 
 import (
 	"fmt"
-	"os"
-
 	"github.com/spf13/cobra"
+	"os"
+)
+
+var (
+	osExit = os.Exit
 )
 
 type Setup func(*cobra.Command)
@@ -51,6 +54,6 @@ func New(name, title, version string, setup Setup) {
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
-		os.Exit(1)
+		osExit(1)
 	}
 }
