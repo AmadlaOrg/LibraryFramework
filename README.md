@@ -10,12 +10,12 @@ Here is a simple example of how it can easily be implemented:
 func main() {
   cli.New(
     "hery",
-	"HERY",
-	"1.0.0",
-	func(rootCmd *cobra.Command) {
-	  rootCmd.AddCommand(cmd.SettingsCmd)
-	  rootCmd.AddCommand(cmd.CollectionCmd)
-	})
+    "HERY",
+    "1.0.0",
+    func(rootCmd *cobra.Command) {
+      rootCmd.AddCommand(cmd.SettingsCmd)
+      rootCmd.AddCommand(cmd.CollectionCmd)
+    })
 }
 ```
 
