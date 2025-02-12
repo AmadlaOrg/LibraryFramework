@@ -16,6 +16,7 @@ var (
 //
 // Params:
 // - 🐍 *cobra.Command - Is for passing the root Command so that other commands can be attached to the main one
+// TODO: Maybe pass other params for configuration (viper), location, caching and hasPlugins *bool
 type Setup func(*cobra.Command)
 
 // New attaches to the cli the basic details and command that all the cli application require to work
